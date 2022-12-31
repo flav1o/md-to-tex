@@ -1,5 +1,6 @@
 import ENV_VARIABLES from "../config/env";
 import { Configuration, OpenAIApi } from "openai";
+import { ApiResponse } from "../types";
 
 const configuration = new Configuration({
 	apiKey: ENV_VARIABLES.OPENAI_API_KEY,
@@ -7,7 +8,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const generateText = async (prompt: string) => {
+const generateText = async (prompt: string): Promise<ApiResponse<string>> => {
 	const response = await openai.createCompletion({
 		prompt,
 		top_p: 1,
@@ -19,7 +20,13 @@ const generateText = async (prompt: string) => {
 		stop: [" Human:", " AI:"],
 	});
 
-	return response.data.choices[0].text;
+	const data = response?.data?.choices?.[0]?.text;
+	if (!data) throw new Error("No data");
+
+	return {
+		statusCode: 200,
+		body: data,
+	};
 };
 
 export default generateText;
