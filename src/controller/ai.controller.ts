@@ -3,7 +3,7 @@ import generateText from "../service/ai.service";
 
 const generateEmail = async (req: Request, res: Response) => {
 	const aiGeneratedText = await generateText("talk about dogs");
-	return res.status(200).send(aiGeneratedText);
+	return res.status(200).send({ response: aiGeneratedText });
 };
 
 export { generateEmail };
