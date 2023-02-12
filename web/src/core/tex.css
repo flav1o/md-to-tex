@@ -1,0 +1,41 @@
+#dynamic-html h1,
+#dynamic-html h2,
+#dynamic-html h3,
+#dynamic-html h4,
+#dynamic-html h5,
+#dynamic-html h6 {
+    margin-bottom: 0.5em;
+}
+
+#dynamic-html {
+    color: #1a202c;
+    word-wrap: break-word;
+    hyphens: auto;
+    text-align: justify;
+    margin: 1.44in;
+    word-break: break-word;
+    font-family: "Source Serif Pro", "Times New Roman", Times, serif;
+}
+
+
+#dynamic-html p {
+    margin-bottom: 1em;
+}
+
+#dynamic-html blockquote {
+    margin: 1em 2.5em;
+}
+
+#dynamic-html blockquote,
+#dynamic-html q {
+    font-style: italic;
+}
+
+
+#dynamic-html figure {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+    margin: 1em 2.5em;
+}
