@@ -3,47 +3,9 @@ import { PropTypes } from "./LatexPreviewer.types";
 import { ProcessorService } from "~/service";
 import LatexPreviewerStyles from "./LatexEditor.styles";
 import DOMPurify from "dompurify";
-
-const styles = {
-  html: {
-    color: "#1a202c",
-    textAlign: "justify",
-    wordWrap: "break-word",
-    wordBreak: "break-word",
-    hyphens: "auto",
-  },
-  body: {
-    margin: "1.44in",
-    fontFamily: '"Source Serif Pro", "Times New Roman", Times, serif',
-  },
-  a: {
-    color: "#2b6cb0",
-    textDecoration: "none",
-  },
-  "a:hover": {
-    textDecoration: "underline",
-    textDecorationColor: "#bee3f8",
-    textUnderlineOffset: "3px",
-  },
-  blockquote: {
-    margin: "1em 2.5em",
-  },
-  q: {
-    fontStyle: "italic",
-  },
-  code: {
-    background: "#edf2f7",
-    padding: "0 0.2em",
-    borderRadius: "0.125em",
-  },
-  figure: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    gap: "0.5em",
-    margin: "1em 2.5em",
-  },
-};
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
+import { Page, Document } from "@react-pdf/renderer";
 
 const LatexPreviewer: FC<PropTypes> = ({ markdownFromEditor }) => {
   const { container } = LatexPreviewerStyles();
