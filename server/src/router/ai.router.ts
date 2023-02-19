@@ -1,8 +1,8 @@
 import express from "express";
-import * as AiController from "../controller/ai.controller";
+import { AiController } from "../controller/ai.controller";
 
 const router = express.Router();
 
-router.get("/", AiController.generateEmail);
+router.get("/", AiController.generateText);
 
-export default router;
+export { router as AiRouter };
