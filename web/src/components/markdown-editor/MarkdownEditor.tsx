@@ -9,7 +9,7 @@ const MarkdownEditor: FC<PropTypes> = ({ onEdit }) => {
   return (
     <TextareaAutosize
       onChange={(e) => onEdit(e.target.value)}
-      minRows={100}
+      minRows={20}
       className={editor}
     />
   );

@@ -1,29 +1,33 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from "react";
-import { PropTypes } from "./LatexPreviewer.types";
-import { ProcessorService } from "~/service";
-import LatexPreviewerStyles from "./LatexEditor.styles";
+import React, { FC, useEffect, useState } from "react";
 import DOMPurify from "dompurify";
-import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
-import { Page, Document } from "@react-pdf/renderer";
+import { ProcessorService } from "~/service";
+import { PropTypes } from "./LatexPreviewer.types";
+import LatexPreviewerStyles from "./LatexPreviewer.styles";
 
-const LatexPreviewer: FC<PropTypes> = ({ markdownFromEditor }) => {
+const LatexPreviewer: FC<PropTypes> = ({
+  markdownFromEditor,
+  previewerRef,
+}) => {
   const { container } = LatexPreviewerStyles();
-  const [html, setHtml] = useState("");
+  const [html, setHtml] = useState<string>("");
 
   useEffect(() => {
-    console.log("changed");
     ProcessorService.astToHtml(markdownFromEditor)
       .then((html) => setHtml(html))
       .catch((err) => console.log(err));
   }, [markdownFromEditor]);
 
   return (
-    <div
-      className={container}
-      id="dynamic-html"
-      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }}
-    />
+    <>
+      <div
+        ref={previewerRef}
+        className={container}
+        id="dynamic-html"
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(html),
+        }}
+      />
+    </>
   );
 };
 

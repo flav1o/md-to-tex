@@ -4,10 +4,11 @@ import { makeStyles } from "@mui/styles";
 const MarkdownEditorStyles = makeStyles((theme: Theme) => ({
   editor: {
     width: "100%",
-
-    maxHeight: "100vh",
     overflowY: "auto",
     resize: "none",
+    padding: theme.spacing(2),
+    outline: 0,
+    border: 0,
   },
 }));
 
